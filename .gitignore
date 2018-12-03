@@ -3,3 +3,6 @@
 
 # ide
 .idea
+
+# misc
+.githooks.ini
