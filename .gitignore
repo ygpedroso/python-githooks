@@ -4,5 +4,8 @@
 # ide
 .idea
 
+# test
+.pytest_cache
+
 # misc
 .githooks.ini
