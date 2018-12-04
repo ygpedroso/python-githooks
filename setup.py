@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="python-githooks",
-    version="1.0.1",
+    version="1.0.2",
     description="Create git hooks with ease using a simple configuration file in a git project",
     long_description=README,
     long_description_content_type="text/markdown",
