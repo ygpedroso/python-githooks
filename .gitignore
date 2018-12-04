@@ -10,3 +10,8 @@
 
 # misc
 .githooks.ini
+
+# build
+/build
+/dist
+/python_githooks.egg-info
