@@ -1,6 +1,6 @@
 import os
 from configparser import ConfigParser
-from python_hooks.helpers import create_config_file, create_git_hooks
+from python_githooks.helpers import create_config_file, create_git_hooks
 
 
 def test_config_file_creation(workspace_without_git):
