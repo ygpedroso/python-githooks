@@ -4,7 +4,7 @@ import os
 import sys
 
 def main():
-    os.system("{}")
+    os.system("{command}")
     sys.exit(0)
     
 
