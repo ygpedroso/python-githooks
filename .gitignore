@@ -5,6 +5,7 @@
 .idea
 
 # test
+.coverage
 .pytest_cache
 
 # misc
