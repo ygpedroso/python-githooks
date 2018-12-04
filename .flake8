@@ -1,0 +1,4 @@
+[flake8]
+ignore = W391
+exclude = venv/*
+max-line-length = 160
