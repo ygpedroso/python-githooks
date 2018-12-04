@@ -16,5 +16,5 @@ def workspace_without_git():
 @pytest.fixture
 def workspace_with_git():
     os.makedirs(__GITHOOKS_BASE_DIR__)
-    yield __GITHOOKS_BASE_DIR__
+    yield __BASE_DIR__
     shutil.rmtree(__BASE_DIR__)
