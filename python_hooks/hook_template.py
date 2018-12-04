@@ -4,6 +4,7 @@ import os
 import sys
 
 def main():
+    print("python-hooks > {section}")
     os.system("{command}")
     sys.exit(0)
     
