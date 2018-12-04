@@ -4,7 +4,7 @@ import os
 import sys
 
 def main():
-    print("python-hooks > {section}")
+    print("python-githooks > {section}")
     os.system("{command}")
     sys.exit(0)
 
