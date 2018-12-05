@@ -1,13 +1,31 @@
+import os
+import sys
 import pathlib
 from setuptools import setup
+from setuptools.command.install import install
 
 HERE = pathlib.Path(__file__).parent
 
+VERSION = "1.0.2"
+
 README = (HERE / "README.md").read_text()
+
+
+class VerifyVersionCommand(install):
+    """Command to verify that the git tag matches the library version"""
+    description = 'verify that the git tag matches the library version'
+
+    def run(self):
+        tag = os.getenv('CIRCLE_TAG').replace('v', '')
+
+        if tag != VERSION:
+            info = "Git tag: {0} does not match the version of this app: {1}".format(tag, VERSION)
+            sys.exit(info)
+
 
 setup(
     name="python-githooks",
-    version="1.0.2",
+    version=VERSION,
     description="Create git hooks with ease using a simple configuration file in a git project",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -29,4 +47,7 @@ setup(
             "githooks=python_githooks.__main__:main",
         ]
     },
+    cmdclass={
+        'verify': VerifyVersionCommand,
+    }
 )
