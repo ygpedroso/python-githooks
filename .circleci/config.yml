@@ -23,6 +23,7 @@ jobs:
           command: |
             . venv/bin/activate
             flake8 --statistics
+      # Step 4: run tests
       - run:
           name: run tests
           command: |
