@@ -64,10 +64,16 @@ workflows:
   version: 2
   build_test_and_deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
       - test:
           requires:
             - build
+          filters:
+            tags:
+              only: /^v.*/
       - deploy:
           requires:
             - build
