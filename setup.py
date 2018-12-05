@@ -6,7 +6,7 @@ from setuptools.command.install import install
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = "1.0.2"
+VERSION = "1.0.3"
 
 README = (HERE / "README.md").read_text()
 
