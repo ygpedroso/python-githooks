@@ -53,13 +53,13 @@ jobs:
               python3 -m venv venv
               . venv/bin/activate
               python setup.py verify
-      - run:
-          name: deploy library
-          command: |
-            . venv/bin/activate
-            pip install --upgrade setuptools wheel twine
-            python setup.py sdist bdist_wheel
-            twine upload dist/*
+        - run:
+            name: deploy library
+            command: |
+              . venv/bin/activate
+              pip install --upgrade setuptools wheel twine
+              python setup.py sdist bdist_wheel
+              twine upload dist/*
 workflows:
   version: 2
   build_test_and_deploy:
