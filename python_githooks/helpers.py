@@ -28,7 +28,7 @@ def create_git_hooks(configfile_path, githooks_dir):
                 print('{} hook successfully created for running "{}"'.format(section, command))
     else:
         message = '''
-        Unable to find the ".githooks" configuration file.
+        Unable to find the ".githooks.ini" configuration file.
         Please, create it and try again.
         '''
         print(message)
