@@ -16,12 +16,27 @@ pip install python-githooks
 3. Run either `python -m python_githooks` or `githooks` in you virtual environment.
 * Configuration file Example:
 ```
+# .githooks.ini
+
 [pre-commit]
 command = pytest --cov
 
 [pre-push]
 command = pytest --cov && flake8
 ```
+* Remember to re-run `python -m python_githooks` or `githooks` every time  you make changes to the configuration file, 
+whether it is for adding new hooks or modifying the current ones.   
+
+## Removing a hook
+If you already created a hook and now want to remove it, just set the command value to empty, like this:
+```
+# .githooks.ini
+
+[pre-commit]
+command = 
+```
+This will not actually physically remove the hook from the git local project, just will make it instantly exit with `0` 
+status code.
 
 ## License
 python-githooks is [MIT-licensed](https://github.com/ygpedroso/python-githooks/blob/master/LICENSE).
