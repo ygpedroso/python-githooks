@@ -1,9 +1,11 @@
 version: 2
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/python:3.6.6
 jobs:
   build:
-    docker:
-      - image: circleci/python:3.6.6
-    working_directory: ~/repo
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -21,9 +23,7 @@ jobs:
           - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
   test:
-    docker:
-      - image: circleci/python:3.6.6
-    working_directory: ~/repo
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -37,9 +37,7 @@ jobs:
             flake8 --statistics
             pytest -v --cov
   deploy:
-    docker:
-      - image: circleci/python:3.6.6
-    working_directory: ~/repo
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
