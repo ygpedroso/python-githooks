@@ -9,6 +9,7 @@
 .coverage
 .pytest_cache
 __pycache__
+test-reports/
 
 # misc
 .githooks.ini
