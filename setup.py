@@ -1,14 +1,13 @@
 import os
 import sys
-import pathlib
 from setuptools import setup
 from setuptools.command.install import install
 
-HERE = pathlib.Path(__file__).parent
+HERE = os.path.dirname(__file__)
 
 VERSION = "1.0.5"
 
-README = (HERE / "README.md").read_text()
+README = open(os.path.join(HERE, "README.md")).read()
 
 
 class VerifyVersionCommand(install):
