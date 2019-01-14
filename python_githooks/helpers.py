@@ -4,6 +4,10 @@ import stat
 from configparser import ConfigParser
 from .hook_template import hook_template
 
+try:
+    from shlex import quote as _quote
+except ImportError:
+    from pipes import quote as _quote
 
 def create_config_file(configfile_path):
     config = ConfigParser()
@@ -22,7 +26,7 @@ def create_git_hooks(configfile_path, githooks_dir):
                 command = hook['command']
                 githook_file = os.path.join(githooks_dir, section)
                 with open(githook_file, 'wb') as file:
-                    file.write(hook_template.format(section=section, command=command).encode())
+                    file.write(hook_template.format(section=section, command=repr(_quote(command))).encode())
                     st = os.stat(githook_file)
                     os.chmod(githook_file, st.st_mode | stat.S_IEXEC)
                 print('{} hook successfully created for running "{}"'.format(section, command))

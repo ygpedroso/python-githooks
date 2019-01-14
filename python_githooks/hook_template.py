@@ -4,8 +4,7 @@ import os
 import sys
 
 def main():
-    print("python-githooks > {section}")
-    os.system("{command}")
+    os.system('sh -c ' + {command})
     sys.exit(0)
 
 
