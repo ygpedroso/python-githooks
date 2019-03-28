@@ -1,12 +1,12 @@
 hook_template = '''#!/usr/bin/env python
 
-import os
+import subprocess
 import sys
 
 def main():
     print("python-githooks > {section}")
-    os.system("{command}")
-    sys.exit(0)
+    return_code = subprocess.call("{command}",  shell=True)
+    sys.exit(return_code)
 
 
 if __name__ == "__main__":
