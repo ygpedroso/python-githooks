@@ -11,6 +11,9 @@
 __pycache__
 test-reports/
 
+# mypy
+.mypy_cache/
+
 # misc
 .githooks.ini
 
