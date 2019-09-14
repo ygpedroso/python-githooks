@@ -6,16 +6,20 @@
 > Create git hooks with ease using a simple configuration file in a git project
 
 ## Install
+
 ```bash
 pip install python-githooks
 ```
 
 ## Usage
+
 1. Create a `.githooks.ini` configuration file(If not provided a dummy configuration file will be created).
 2. Add sections based on `git hooks names`  followed by a `command` property with the shell code you want to run.
-3. Run either `python -m python_githooks` or `githooks` in you virtual environment.
-* Configuration file Example:
-```
+3. Run either `python -m python_githooks` or `githooks` in your virtual environment.
+
+**Configuration file example**:
+
+```ini
 # .githooks.ini
 
 [pre-commit]
@@ -24,19 +28,22 @@ command = pytest --cov
 [pre-push]
 command = pytest --cov && flake8
 ```
-* Remember to re-run `python -m python_githooks` or `githooks` every time  you make changes to the configuration file, 
-whether it is for adding new hooks or modifying the current ones.   
+
+* Remember to re-run `python -m python_githooks` or `githooks` when you add new hooks.
 
 ## Removing a hook
+
 If you already created a hook and now want to remove it, just set the command value to empty, like this:
-```
+
+```ini
 # .githooks.ini
 
 [pre-commit]
-command = 
+command =
 ```
-This will not actually physically remove the hook from the git local project, just will make it instantly exit with `0` 
-status code.
+
+This will not actually physically remove the hook from the git local project, just will make it instantly exit with `0` status code.
 
 ## License
+
 python-githooks is [MIT-licensed](https://github.com/ygpedroso/python-githooks/blob/master/LICENSE).

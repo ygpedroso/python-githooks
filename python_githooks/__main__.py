@@ -1,6 +1,6 @@
 import os
 import sys
-from .helpers import create_config_file, create_git_hooks
+from .helpers import create_config_file, create_git_hooks, execute_git_hook
 
 __BASE_DIR__ = os.environ["PWD"]
 __GITHOOKS_BASE_DIR__ = os.path.join(__BASE_DIR__, '.git/hooks')
@@ -9,9 +9,12 @@ __GITHOOKS_CONFIGFILE_PATH__ = os.path.join(__BASE_DIR__, '.githooks.ini')
 
 def main():
     if os.path.isdir(__GITHOOKS_BASE_DIR__):
-        if not os.path.isfile(__GITHOOKS_CONFIGFILE_PATH__):
-            create_config_file(configfile_path=__GITHOOKS_CONFIGFILE_PATH__)
-        create_git_hooks(configfile_path=__GITHOOKS_CONFIGFILE_PATH__, githooks_dir=__GITHOOKS_BASE_DIR__)
+        if sys.argv[1:]:
+            execute_git_hook(section=sys.argv[1].strip(), configfile_path=__GITHOOKS_CONFIGFILE_PATH__)
+        else:
+            if not os.path.isfile(__GITHOOKS_CONFIGFILE_PATH__):
+                create_config_file(configfile_path=__GITHOOKS_CONFIGFILE_PATH__)
+            create_git_hooks(configfile_path=__GITHOOKS_CONFIGFILE_PATH__, githooks_dir=__GITHOOKS_BASE_DIR__)
     else:
         message = '''
         Sorry, this is not a GIT repository.
