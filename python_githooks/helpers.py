@@ -44,7 +44,7 @@ def execute_git_hook(section, configfile_path):
     config = ConfigParser()
     if os.path.isfile(configfile_path):
         config.read(configfile_path)
-        if config.has_section(section) and config.has_option(section, 'command'):
+        if config.has_option(section, 'command'):
             command = config[section]['command']
             sys.exit(subprocess.call(command, shell=True))
     else:
