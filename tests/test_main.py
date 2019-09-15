@@ -25,6 +25,7 @@ def test_main_entry_point_config_file_creation(mocker, workspace_with_git):
     assert python_githooks.__main__.create_config_file.call_count == 1
     assert python_githooks.__main__.create_git_hooks.call_count == 1
 
+
 def test_main_entry_point_githook_execution(mocker, workspace_with_config):
     """main function should execute first argument as githook"""
     python_githooks.__main__.__BASE_DIR__ = workspace_with_config

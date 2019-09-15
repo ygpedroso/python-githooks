@@ -21,6 +21,7 @@ def workspace_with_git():
     yield __BASE_DIR__
     shutil.rmtree(__BASE_DIR__)
 
+
 @pytest.fixture
 def workspace_with_config(workspace_with_git):
     create_config_file(__GITHOOKS_CONFIGFILE_PATH__)
