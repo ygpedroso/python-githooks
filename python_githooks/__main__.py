@@ -9,8 +9,9 @@ __GITHOOKS_CONFIGFILE_PATH__ = os.path.join(__BASE_DIR__, '.githooks.ini')
 
 def main():
     if os.path.isdir(__GITHOOKS_BASE_DIR__):
-        if sys.argv[1:]:
-            execute_git_hook(section=sys.argv[1].strip(), configfile_path=__GITHOOKS_CONFIGFILE_PATH__)
+        non_option_args = [arg for arg in sys.argv[1:] if not arg.startswith('-')]
+        if non_option_args:
+            execute_git_hook(section=non_option_args[0].strip(), configfile_path=__GITHOOKS_CONFIGFILE_PATH__)
         else:
             if not os.path.isfile(__GITHOOKS_CONFIGFILE_PATH__):
                 create_config_file(configfile_path=__GITHOOKS_CONFIGFILE_PATH__)

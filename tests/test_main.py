@@ -33,7 +33,7 @@ def test_main_entry_point_githook_execution(mocker, workspace_with_config):
     python_githooks.__main__.__GITHOOKS_CONFIGFILE_PATH__ = os.path.join(workspace_with_config, '.githooks.ini')
     mocked_sys_exit = mocker.patch('sys.exit')
     mocker.spy(python_githooks.__main__, 'execute_git_hook')
-    sys.argv = sys.argv[:1] + [' pre-commit  ']
+    sys.argv = sys.argv[:1] + ['-v', 'pre-commit']
     main()
     assert python_githooks.__main__.execute_git_hook.call_count == 1
     assert python_githooks.__main__.execute_git_hook.call_args[1]["section"] == 'pre-commit'
