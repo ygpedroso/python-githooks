@@ -1,6 +1,6 @@
 import os
 from configparser import ConfigParser
-from python_githooks.helpers import create_config_file, create_git_hooks
+from python_githooks.helpers import create_config_file, create_git_hooks, execute_git_hook
 
 
 def test_config_file_creation(workspace_without_git):
@@ -28,6 +28,8 @@ def test_git_hook_creation(workspace_with_git):
     create_config_file(configfile_path=configfile_path)
     create_git_hooks(configfile_path, githooks_dir)
     assert os.path.isfile(os.path.join(githooks_dir, 'pre-commit')) is True
+    with open(os.path.join(githooks_dir, 'pre-commit'), 'r') as f:
+        assert f.read() == 'githooks pre-commit'
 
 
 def test_git_hook_creation_permissions(workspace_with_git):
@@ -45,3 +47,11 @@ def test_git_hook_creation_exit(mocker, workspace_with_git):
     githooks_dir = os.path.join(workspace_with_git, '.git/hooks')
     create_git_hooks('wrong_config_file.ini', githooks_dir)
     mocked_sys_exit.assert_called_once_with(1)
+
+
+def test_git_hook_execution_exit(mocker, workspace_with_config):
+    """execute_git_hook helper function should exit with command successfully executed"""
+    mocked_sys_exit = mocker.patch('sys.exit')
+    configfile_path = os.path.join(workspace_with_config, '.githooks.ini')
+    execute_git_hook('pre-commit', configfile_path)
+    mocked_sys_exit.assert_called_once_with(0)
