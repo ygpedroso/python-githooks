@@ -2,7 +2,7 @@ import os
 import sys
 from .helpers import create_config_file, create_git_hooks
 
-__BASE_DIR__ = os.environ["PWD"]
+__BASE_DIR__ = os.getcwd()
 __GITHOOKS_BASE_DIR__ = os.path.join(__BASE_DIR__, '.git/hooks')
 __GITHOOKS_CONFIGFILE_PATH__ = os.path.join(__BASE_DIR__, '.githooks.ini')
 
