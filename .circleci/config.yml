@@ -57,7 +57,7 @@ jobs:
           name: deploy library
           command: |
             . venv/bin/activate
-            pip install --upgrade setuptools wheel twine
+            pip install --upgrade pip setuptools wheel twine
             python setup.py sdist bdist_wheel
             twine upload dist/*
 workflows:

@@ -3,6 +3,7 @@
 
 # ide
 .idea
+.vscode
 
 # test
 /coverage
