@@ -1,0 +1,9 @@
+flake8
+pytest
+pytest-cov
+pytest-mock
+coverage
+# Add other direct dev dependencies if identified as necessary by deptry,
+# but for now, these are the primary ones for testing and linting.
+# Sub-dependencies of these (e.g., pyflakes, mccabe for flake8; pluggy, attrs for pytest)
+# will be pulled in automatically when these are installed.

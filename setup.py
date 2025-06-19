@@ -6,7 +6,7 @@ from setuptools.command.install import install
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = "1.0.7"
+VERSION = "2.0.0"
 
 README = (HERE / "README.md").read_text()
 
@@ -41,7 +41,7 @@ setup(
     ],
     packages=["python_githooks"],
     include_package_data=True,
-    install_requires=["configparser"],
+    install_requires=["PyYAML>=6.0.1,<7.0"],
     entry_points={
         "console_scripts": [
             "githooks=python_githooks.__main__:main",
