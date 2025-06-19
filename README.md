@@ -11,32 +11,36 @@ pip install python-githooks
 ```
 
 ## Usage
-1. Create a `.githooks.ini` configuration file(If not provided a dummy configuration file will be created).
-2. Add sections based on `git hooks names`  followed by a `command` property with the shell code you want to run.
-3. Run either `python -m python_githooks` or `githooks` in you virtual environment.
+1. Create a `.githooks.yml` (or `.githooks.yaml`) configuration file. If not provided, a dummy configuration file will be created.
+2. Define hooks as top-level keys. Under each hook, use a `commands` key (plural) which takes a list of shell commands to be executed sequentially.
+3. Run either `python -m python_githooks` or `githooks` in your virtual environment.
 * Configuration file Example:
-```
-# .githooks.ini
+```yaml
+# .githooks.yml
 
-[pre-commit]
-command = pytest --cov
+pre-commit:
+  commands:
+    - pytest --cov
+    - flake8 .
+    - echo "Pre-commit checks passed!"
 
-[pre-push]
-command = pytest --cov && flake8
+pre-push:
+  commands:
+    - echo "Running pre-push checks..."
+    - python manage.py test
 ```
-* Remember to re-run `python -m python_githooks` or `githooks` every time  you make changes to the configuration file, 
-whether it is for adding new hooks or modifying the current ones.   
+* Remember to re-run `python -m python_githooks` or `githooks` every time you make changes to the configuration file,
+whether it is for adding new hooks or modifying the current ones.
 
-## Removing a hook
-If you already created a hook and now want to remove it, just set the command value to empty, like this:
-```
-# .githooks.ini
+## Removing or Disabling a hook
+If you want to effectively disable a hook (e.g., one that was previously defined), you can provide an empty list to the `commands` key:
+```yaml
+# .githooks.yml
 
-[pre-commit]
-command = 
+pre-commit:
+  commands: [] # This pre-commit hook will do nothing
 ```
-This will not actually physically remove the hook from the git local project, just will make it instantly exit with `0` 
-status code.
+This will make the hook instantly exit with a `0` status code. To completely remove a hook definition, simply delete its top-level key (e.g., `pre-commit:`) from the YAML file and re-run `githooks`. The corresponding hook script in `.git/hooks/` will then execute an empty list of commands.
 
 ## License
 python-githooks is [MIT-licensed](https://github.com/ygpedroso/python-githooks/blob/master/LICENSE).
